@@ -1,0 +1,88 @@
+Exercises on Design Patterns
+
+1. 	Write down three differences between abstract classes and interfaces in Java 8. 
+	Provide examples to illustrate your answer.
+
+	a. An abstract class can have a constructor, whereas an interface cannot
+
+	b. It is possible to limit the accessibility of an abstract class through access modifiers, whereas methods
+	   in and interface are limited to be public
+
+	c. A concrete class may implement multiple interface, whereas it can only extend one concrete class
+
+		
+2. 	Are the following true or false?
+
+	a.  Every interface must have at least one method?
+
+	This is false. Marker interfaces such as Serializable do not contain information on functionality, i.e methods,
+	but are there to pass type/behavioural information to an implementing class. For example, only a class implementing
+	Serializable can be have its state serialized
+
+	b.  An interface can declare instance fields that an implementing class must also
+       declare.
+
+    This is false. An instance fields declared must be static, as an interface does not hold any state
+
+    c.  Although you can’t instantiate an interface, an interface definition can declare
+        constructor methods that require an implementing class to provide constructors
+        with given signatures.
+
+    This is also false. An interface cannot contain any constructor methods
+
+3.  Provide an example of an interface with methods that do not imply responsibility on
+    the part of the implementing class to take action on behalf of the caller or to return
+    a value.
+
+	The EventListener interface is one such example. When a subject object (i.e. one which is
+	run independently from the rest of the program i.e. a GUI button) is activated, it will notify 
+	an observer or listener (an object in the program that watches the subject and is implementing the class),
+	which will in turn execute it own code
+
+4.  What is the value of a stub class like WindowAdapter which is composed of methods
+    that do nothing?
+	
+	If WindowAdapter were to implement WindowListener, then all the methods would have to be 
+	declared, regardless of if where required by the implementing class. However, if a new class 
+	was to be written, which extended WindowAdapter, then only the required methods would need to 
+	be declared.	
+
+
+5.  How can you prevent other developers from constructing new instances of your class?
+    Provide appropriate examples to illustrate your answer.
+
+
+6.  Why might you decide to lazy-initialise a singleton instance rather than initialise it in
+    its field declaration? Provide examples of both approaches to illustrate your answer.
+
+7.  Using the java.util.Observable and java.util.Observer classes/interfaces show
+    how one object can be informed of updates to another object.
+
+8.  “The Observer pattern supports the MVC pattern”. State if this statement is true
+    or false and support your answer by use of an appropriate example.
+	
+	This is true. The subject will notify an observers whom have registers as such with the
+	class of any changes in its state. The subject does not know of the existence of observers
+	and hence is independent of any observers. In this case the subject is model and the observers
+	are the view and controller. 	
+
+9.  Provide examples of two commonly used Java methods that return a new object.
+
+    The toString() method returns a string representation of the object on which the method is being
+    called on
+
+    The clone() method returns an exact copy of the object on which it is called
+
+10. What are the signs that a Factory Method is at work?
+
+11. If you want to direct output to System.out instead of to a file, you can create a
+    Writer object that directs its output to System.out:
+
+    Writer out = new PrintWriter(System.out);
+
+    Write a code example to define a Writer object that wraps text at 15 characters, centres
+    the text, sets the text to random casing, and directs the output to System.out.
+    Which design pattern are you using?
+
+
+
