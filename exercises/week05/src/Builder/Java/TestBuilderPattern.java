@@ -23,6 +23,13 @@ public class TestBuilderPattern {
         director.build();
         car = carBuilder.getCar();
         System.out.println(car);
+
+        //East Germany Engineering
+        carBuilder = new TrabantBuilder();
+        director = new CarDirector(carBuilder);
+        director.build();
+        car = carBuilder.getCar();
+        System.out.println(car);
     }
 
 }
