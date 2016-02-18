@@ -2,7 +2,7 @@ package TraitsInheritance
 
 import com.atomicscala.AtomicTest._
 
-trait Shape {
+sealed trait Shape {
 
   def sides: Int
 
@@ -12,7 +12,7 @@ trait Shape {
 
 }
 
-//updated with subtype -> to be used for all 4 sided shapes
+//updated with subtype
 trait Rectangular extends Shape{
 
   val length: Double
@@ -42,7 +42,6 @@ case class Rectangle(length: Double, width: Double ) extends Rectangular
 case class Square(length: Double) extends Rectangular{
 
   val width: Double = length
-
 }
 
 
@@ -73,5 +72,30 @@ object ShapeTest extends App{
   square.sides is 4
   square.perimeter is 12
   square.area is 9
+
+}
+
+object Draw {
+
+  def apply(shape: Shape): String = shape match {
+
+    case Circle(radius) => "A circle of radius " + radius + "cm"
+
+    case Rectangle(length, width) => "A rectangle of length " + length +"cm and width " + width + "cm"
+
+    case Square(length) => "A square of length " + length + "cm"
+
+  }
+
+}
+
+//testing draw methods
+object DrawTest extends App{
+
+  Draw(Circle(10)) is "A circle of radius 10.0cm"
+
+  Draw(Rectangle(3,4)) is "A rectangle of length 3.0cm and width 4.0cm"
+
+  Draw(Square(4)) is "A square of length 4.0cm"
 
 }
