@@ -12,6 +12,21 @@ trait Shape {
 
 }
 
+//updated with subtype -> to be used for all 4 sided shapes
+trait Rectangular extends Shape{
+
+  val length: Double
+
+  val width: Double
+
+  def sides: Int = 4
+
+  def perimeter: Double = (length * 2) + (width * 2)
+
+  def area: Double = length * width
+
+}
+
 case class Circle(radius: Double) extends Shape{
 
   def sides: Int = 1
@@ -21,22 +36,13 @@ case class Circle(radius: Double) extends Shape{
   def area: Double = (math.Pi * radius) * radius
 }
 
-case class Rectangle(length: Double, width: Double ) extends Shape{
+case class Rectangle(length: Double, width: Double ) extends Rectangular
 
-  def sides: Int = 4
 
-  def perimeter: Double = (length * 2) + (width * 2)
+case class Square(length: Double) extends Rectangular{
 
-  def area: Double = length * width
-}
+  val width: Double = length
 
-case class Square(length: Double) extends Shape{
-
-  def sides: Int = 4
-
-  def perimeter: Double = length * 4
-
-  def area: Double = length * length
 }
 
 
@@ -63,6 +69,7 @@ object ShapeTest extends App{
   //create a new square shape
   val square: Shape = Square(3)
 
+  //testing methods correctly implemented
   square.sides is 4
   square.perimeter is 12
   square.area is 9
