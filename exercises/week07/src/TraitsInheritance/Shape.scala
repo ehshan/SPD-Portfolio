@@ -91,12 +91,12 @@ object Draw {
 
   def apply(shape: Shape): String = shape match {
 
-    case  Circle(radius, colour) => "A circle of radius " + radius + "cm and colour "+colour.toString
+    case  Circle(radius, colour) => "A circle of radius " + radius + "cm and colour "+colour.name
 
     case  Rectangle(length, width, colour) => "A rectangle of length " + length +"cm and width " + width +
-          "cm and colour "+colour.toString
+          "cm and colour "+colour.name
 
-    case  Square(length, colour) => "A square of length " + length + "cm and colour "+colour.toString
+    case  Square(length, colour) => "A square of length " + length + "cm and colour "+colour.name
 
   }
 

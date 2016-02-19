@@ -14,8 +14,6 @@ sealed trait Colour {
 
   def darkColour: Boolean = (0.33 * red) + (0.5 * green) + (0.16 * blue) < 127.5
 
-  override def toString: String = if (name != null) name else if (darkColour) "Dark" else "Light"
-
 }
 
 //changed defined colours to objects
@@ -57,7 +55,7 @@ case object Pink extends Colour {
 
 case class  NewColour(red: Int, green: Int, blue: Int) extends Colour{
 
-  val name = null
+  val name = if (darkColour) "Dark" else "Light"
 
 }
 
