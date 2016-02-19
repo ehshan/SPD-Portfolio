@@ -10,12 +10,17 @@ sealed trait Colour {
 
   val blue: Int
 
-  def darkColour : Boolean = (0.33 * red) + (0.5 * green) + (0.16 * blue) < 127.5
+  val name: String
+
+  def darkColour: Boolean = (0.33 * red) + (0.5 * green) + (0.16 * blue) < 127.5
+
+  override def toString: String = if (name != null) name else if (darkColour) "Dark" else "Light"
 
 }
 
+//changed defined colours to objects
 
-case class Red() extends Colour {
+case object Red extends Colour {
 
   val red = 255
 
@@ -23,9 +28,11 @@ case class Red() extends Colour {
 
   val blue = 0
 
+  val name = "Red"
+
 }
 
-case class Yellow() extends Colour {
+case object Yellow extends Colour {
 
   val red = 255
 
@@ -33,9 +40,10 @@ case class Yellow() extends Colour {
 
   val blue = 0
 
+  val name = "Yellow"
 }
 
-case class Pink() extends Colour {
+case object Pink extends Colour {
 
   val red = 255
 
@@ -43,19 +51,25 @@ case class Pink() extends Colour {
 
   val blue = 203
 
+  val name = "Pink"
+
 }
 
-case class  NewColour(red: Int, green: Int, blue: Int) extends Colour
+case class  NewColour(red: Int, green: Int, blue: Int) extends Colour{
+
+  val name = null
+
+}
 
 
 //testing colour luminance
 object TestColour extends App{
 
-  val red: Colour = Red()
+  val red: Colour = Red
 
-  val yellow: Colour = Yellow()
+  val yellow: Colour = Yellow
 
-  val pink: Colour = Pink()
+  val pink: Colour = Pink
 
   val black: Colour = NewColour(0,0,0)
 
