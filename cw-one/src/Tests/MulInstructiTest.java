@@ -15,13 +15,16 @@ import static org.junit.Assert.*;
  */
 public class MulInstructiTest {
 
-    Machine machine = new Machine();
-    Registers registers = new Registers();
-    MulInstruction instruction = new MulInstruction("mul",1,2,3);
+    private Machine machine;
+    private Registers registers;
+    private MulInstruction instruction;
 
 
     @Before
     public void setUp() throws Exception {
+        machine = new Machine();
+        registers = new Registers();
+        instruction = new MulInstruction("mul",1,2,3);
         machine.setRegisters(registers);
     }
 
@@ -39,7 +42,7 @@ public class MulInstructiTest {
         machine.getRegisters().setRegister(3,3);
         instruction.execute(machine);
 
-        assertTrue(machine.getRegisters().getRegister(1) == 6);
+        assertEquals(machine.getRegisters().getRegister(1), 6);
 
     }
 

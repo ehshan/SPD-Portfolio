@@ -11,12 +11,15 @@ import static org.junit.Assert.*;
  */
 public class SubInstructionTest {
 
-    Machine machine = new Machine();
-    Registers registers = new Registers();
-    SubInstruction instruction = new SubInstruction("sub", 1, 3, 2);
+    Machine machine;
+    Registers registers;
+    SubInstruction instruction;
 
     @org.junit.Before
     public void setUp() throws Exception {
+        machine = new Machine();
+        registers = new Registers();
+        instruction = new SubInstruction("sub", 1, 3, 2);
         machine.setRegisters(registers);
 
     }
@@ -35,7 +38,7 @@ public class SubInstructionTest {
         machine.getRegisters().setRegister(2, 2);
         instruction.execute(machine);
 
-        assertTrue(machine.getRegisters().getRegister(1) == 1);
+        assertEquals(machine.getRegisters().getRegister(1), 1);
     }
 
     @org.junit.Test
