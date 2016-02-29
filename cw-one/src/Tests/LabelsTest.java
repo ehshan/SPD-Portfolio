@@ -60,10 +60,16 @@ public class LabelsTest {
     @Test
     public void testToString() throws Exception {
 
+        assertEquals("(f0, f1, f2)", labels.toString());
     }
 
     @Test
     public void testReset() throws Exception {
+
+        labels.reset();
+
+        // checks if first label has been removed
+        assertEquals(-1,labels.indexOf("f0"));
 
     }
 }
