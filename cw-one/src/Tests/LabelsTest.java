@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import sml.Labels;
 
+import static org.junit.Assert.*;
 
 /**
  * @author Ehshan Veerabangsa
@@ -33,11 +34,26 @@ public class LabelsTest {
     @Test
     public void testIndexOf() throws Exception {
 
+        //checks that labels contain values
+        assertEquals(0,labels.indexOf("f0"));
+
     }
 
+    @Test
+    public void labelNotFound() throws Exception {
+
+        //looking for a label not in list
+        assertEquals(-1,labels.indexOf("f4"));
+
+    }
 
     @Test
     public void testAddLabel() throws Exception {
+
+        //adding a new label
+        labels.addLabel("f3");
+
+        assertEquals(3,labels.indexOf("f3"));
 
     }
 
