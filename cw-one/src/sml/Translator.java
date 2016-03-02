@@ -107,6 +107,10 @@ public class Translator {
                 s1 = scanInt();
                 s2 = scanInt();
                 return new DivInstruction(label, r, s1, s2);
+            case "bnz":
+                s1 = scanInt();
+                String newLabel = scan();
+                return new BnzInstruction(label, s1, newLabel);
         }
 
         // You will have to write code here for the other instructions.
