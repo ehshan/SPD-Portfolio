@@ -1,7 +1,8 @@
 package sml;
 
 /**
- * This class ....
+ * This class subtracts the contents of the third register form the seconds
+ * and stores the result in the first
  *
  * @author Ehshan Veerabangsa
  */

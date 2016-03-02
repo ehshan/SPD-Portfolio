@@ -1,7 +1,7 @@
 package sml;
 
 /**
- * This class ....
+ * This class stores a value into a register
  *
  * @author Ehshan Veerabangsa
  */

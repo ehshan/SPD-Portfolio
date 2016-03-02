@@ -1,7 +1,8 @@
 package sml;
 
 /**
- * This class ....
+ * This class adds the contents of the second and third registers and
+ * and stores the result in the first
  *
  * @author Ehshan Veerabangsa
  */

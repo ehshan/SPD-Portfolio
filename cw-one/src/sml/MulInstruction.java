@@ -1,7 +1,8 @@
 package sml;
 
 /**
- * This class ....
+ * This class multiplies the content of the second register by the third and stores
+ * the results in the first
  *
  * @author Ehshan Veerabangsa
  */
