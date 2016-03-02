@@ -47,6 +47,6 @@ public class OutInstructionTest {
     @Test
     public void testToString() throws Exception {
 
-        assertEquals("out: out register 4 value is 11", instruction.toString());
+        assertEquals("out: out register 4", instruction.toString());
     }
 }

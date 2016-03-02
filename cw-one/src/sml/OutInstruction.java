@@ -22,13 +22,12 @@ public class OutInstruction extends Instruction {
 
     @Override
     public void execute(Machine m) {
-     this.result = m.getRegisters().getRegister(register);
-     System.out.println(this.toString());
+        this.result = m.getRegisters().getRegister(register);
+        System.out.println("Register " + register + " value is " + this.result);
     }
 
     @Override
     public String toString() {
-        if(this.result !=0)return super.toString() + " register " + register +" value is "+this.result;
         return super.toString() + " register " + register;
     }
 }
