@@ -44,6 +44,15 @@ public class DivInstructionTest {
         assertEquals(2, machine.getRegisters().getRegister(2));
     }
 
+    @Test (expected = ArithmeticException.class)
+    public void testExecuteZero() throws Exception {
+
+        machine.getRegisters().setRegister(0,6);
+        machine.getRegisters().setRegister(1,0);
+        instruction.execute(machine);
+
+    }
+
 
     @Test
     public void testToString() throws Exception {
