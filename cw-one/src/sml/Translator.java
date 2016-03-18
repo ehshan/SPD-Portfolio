@@ -3,7 +3,9 @@ package sml;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -99,6 +101,19 @@ public class Translator {
         try {
 //            System.out.println(Arrays.toString(Class.forName(className).getConstructors()));
             Constructor[] constructorArray = Class.forName(className).getConstructors();
+
+
+            //assigns constructor
+            for (Constructor<?> thisConstructor: constructorArray ) {
+
+//                System.out.println(thisConstructor);
+                Constructor<?>  constructor = thisConstructor;
+
+                //array of each constructor parameters
+                Parameter[] parameters = constructor.getParameters();
+//                System.out.println(Arrays.toString(constructor.getParameters()));
+            }
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
