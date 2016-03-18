@@ -103,16 +103,21 @@ public class Translator {
             Constructor[] constructorArray = Class.forName(className).getConstructors();
 
 
+            //constructor object to store retrieved constructors
+            Constructor<?> constructor =  null;
+
             //assigns constructor
             for (Constructor<?> thisConstructor: constructorArray ) {
 
 //                System.out.println(thisConstructor);
-                Constructor<?>  constructor = thisConstructor;
+                constructor = thisConstructor;
 
-                //array of each constructor parameters
-                Parameter[] parameters = constructor.getParameters();
-//                System.out.println(Arrays.toString(constructor.getParameters()));
             }
+
+            //array of each constructor parameters
+            Parameter[] parameters = constructor.getParameters();
+//          System.out.println(Arrays.toString(constructor.getParameters()));
+
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
