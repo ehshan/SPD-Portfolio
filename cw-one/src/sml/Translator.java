@@ -123,7 +123,8 @@ public class Translator {
             Class[] parameterTypes = constructor.getParameterTypes();
             System.out.println(Arrays.toString(constructor.getParameterTypes()));
 
-
+            //Object to store extracted parameters
+            Object[] parameters = new Object[0];
 
 
         } catch (ClassNotFoundException e) {
