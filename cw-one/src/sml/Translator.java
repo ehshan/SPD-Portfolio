@@ -2,6 +2,7 @@ package sml;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -82,41 +83,65 @@ public class Translator {
             return null;
 
         String ins = scan();
-        switch (ins) {
-            case "add":
-                r = scanInt();
-                s1 = scanInt();
-                s2 = scanInt();
-                return new AddInstruction(label, r, s1, s2);
-            case "lin":
-                r = scanInt();
-                s1 = scanInt();
-                return new LinInstruction(label, r, s1);
-            case "sub":
-                r = scanInt();
-                s1 = scanInt();
-                s2 = scanInt();
-                return new SubInstruction(label, r, s1, s2);
-            case "mul":
-                r = scanInt();
-                s1 = scanInt();
-                s2 = scanInt();
-                return new MulInstruction(label, r, s1, s2);
-            case "div":
-                r = scanInt();
-                s1 = scanInt();
-                s2 = scanInt();
-                return new DivInstruction(label, r, s1, s2);
-            case "bnz":
-                s1 = scanInt();
-                String newLabel = scan();
-                return new BnzInstruction(label, s1, newLabel);
-            case "out":
-                s1 = scanInt();
-                return new OutInstruction(label, s1);
+
+        //add/sub/div/mul => string+int+int+int
+        //out => string+string+int
+        //bnz => string+string+int+string
+
+        //building a class name string
+        String packageName = "sml";
+        String className = packageName + "." + ins.toUpperCase().charAt(0) + ins.substring(1) + "Instruction";
+
+//        System.out.println(className);
+
+
+        //store all class constructors in an array
+        try {
+//            System.out.println(Arrays.toString(Class.forName(className).getConstructors()));
+            Constructor[] constructorArray = Class.forName(className).getConstructors();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
 
-        // You will have to write code here for the other instructions.
+
+
+
+
+//        switch (ins) {
+//            case "add":
+//                r = scanInt();
+//                s1 = scanInt();
+//                s2 = scanInt();
+//                return new AddInstruction(label, r, s1, s2);
+//            case "lin":
+//                r = scanInt();
+//                s1 = scanInt();
+//                return new LinInstruction(label, r, s1);
+//            case "sub":
+//                r = scanInt();
+//                s1 = scanInt();
+//                s2 = scanInt();
+//                return new SubInstruction(label, r, s1, s2);
+//            case "mul":
+//                r = scanInt();
+//                s1 = scanInt();
+//                s2 = scanInt();
+//                return new MulInstruction(label, r, s1, s2);
+//            case "div":
+//                r = scanInt();
+//                s1 = scanInt();
+//                s2 = scanInt();
+//                return new DivInstruction(label, r, s1, s2);
+//            case "bnz":
+//                s1 = scanInt();
+//                String newLabel = scan();
+//                return new BnzInstruction(label, s1, newLabel);
+//            case "out":
+//                s1 = scanInt();
+//                return new OutInstruction(label, s1);
+//        }
+//
+//        // You will have to write code here for the other instructions.
 
         return null;
     }
