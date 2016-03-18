@@ -3,6 +3,7 @@ package sml;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -88,7 +89,8 @@ public class Translator {
 
         //add/sub/div/mul => string+int+int+int
         //out => string+string+int
-        //bnz => string+string+int+string
+        //lin => string+int+int
+        //bnz => string+int+string
 
         //building a class name string
         String packageName = "sml";
@@ -96,12 +98,11 @@ public class Translator {
 
 //        System.out.println(className);
 
-
-        //store all class constructors in an array
         try {
-//            System.out.println(Arrays.toString(Class.forName(className).getConstructors()));
-            Constructor[] constructorArray = Class.forName(className).getConstructors();
 
+//          //store all class constructors in an array
+            Constructor[] constructorArray = Class.forName(className).getConstructors();
+//          System.out.println(Arrays.toString(Class.forName(className).getConstructors()));
 
             //constructor object to store retrieved constructors
             Constructor<?> constructor =  null;
@@ -115,16 +116,19 @@ public class Translator {
             }
 
             //array of each constructor parameters
-            Parameter[] parameters = constructor.getParameters();
+//            Parameter[] parameters = constructor.getParameters();
 //          System.out.println(Arrays.toString(constructor.getParameters()));
+
+            //array of each parameter types
+            Class[] parameterTypes = constructor.getParameterTypes();
+            System.out.println(Arrays.toString(constructor.getParameterTypes()));
+
+
 
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-
-
 
 
 //        switch (ins) {
