@@ -121,15 +121,20 @@ public class Translator {
 
             //array of each parameter types
             Class[] parameterTypes = constructor.getParameterTypes();
-            System.out.println(Arrays.toString(constructor.getParameterTypes()));
+//            System.out.println(Arrays.toString(constructor.getParameterTypes()));
 
             //Object to store extracted parameters - will be the size of param number
             Object[] parameters = new Object[parameterTypes.length];
 
 
-            for (int i = 0; i < parameters.length; i++) {
+            //first param is always the label
+            parameters [0] = label;
 
-//            System.out.print("Para["+ i +"] is a: "+parameterTypes[i]+". ");
+            //looping through parameter types to get values
+            // first param already set
+            for (int i = 1; i < parameters.length ; i++) {
+
+//            System.out.println("Para["+ i +"] is a: "+parameterTypes[i]+". ");
 //            // all ints except [0] and bnz [2]
 
                 if (parameterTypes[i].equals(int.class)) {
@@ -137,8 +142,9 @@ public class Translator {
                 } else if (parameterTypes[i].equals(java.lang.String.class)){
                     parameters[i] = scan();
                 }
-            }
 
+                System.out.println(parameters[i]);
+            }
 
 
         } catch (ClassNotFoundException e) {
