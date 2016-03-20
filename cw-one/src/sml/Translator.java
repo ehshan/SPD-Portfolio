@@ -143,11 +143,11 @@ public class Translator {
                     parameters[i] = scan();
                 }
 
-                System.out.println(parameters[i]);
+//                System.out.println(parameters[i]);
             }
+            return (Instruction) constructor.newInstance(parameters);
 
-
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
         }
 
