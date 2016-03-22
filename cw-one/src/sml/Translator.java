@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Parameter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -77,10 +75,6 @@ public class Translator {
     // removed. Translate line into an instruction with label label
     // and return the instruction
     public Instruction getInstruction(String label) {
-        int s1; // Possible operands of the instruction
-        int s2;
-        int r;
-        int x;
 
         if (line.equals(""))
             return null;
@@ -96,13 +90,10 @@ public class Translator {
         String packageName = "sml";
         String className = packageName + "." + ins.toUpperCase().charAt(0) + ins.substring(1) + "Instruction";
 
-//        System.out.println(className);
-
         try {
 
 //          //store all class constructors in an array
             Constructor[] constructorArray = Class.forName(className).getConstructors();
-//          System.out.println(Arrays.toString(Class.forName(className).getConstructors()));
 
             //constructor object to store retrieved constructors
             Constructor<?> constructor =  null;
@@ -110,32 +101,22 @@ public class Translator {
             //assigns constructor
             for (Constructor<?> thisConstructor: constructorArray ) {
 
-//                System.out.println(thisConstructor);
                 constructor = thisConstructor;
-
             }
-
-            //array of each constructor parameters
-//            Parameter[] parameters = constructor.getParameters();
-//          System.out.println(Arrays.toString(constructor.getParameters()));
 
             //array of each parameter types
             Class[] parameterTypes = constructor.getParameterTypes();
-//            System.out.println(Arrays.toString(constructor.getParameterTypes()));
 
             //Object to store extracted parameters - will be the size of param number
             Object[] parameters = new Object[parameterTypes.length];
 
-
-            //first param is always the label
+            //first param is always the label so pre assigned to avoid dealing with in loop
             parameters [0] = label;
 
             //looping through parameter types to get values
             // first param already set
             for (int i = 1; i < parameters.length ; i++) {
 
-//            System.out.println("Para["+ i +"] is a: "+parameterTypes[i]+". ");
-//            // all ints except [0] and bnz [2]
 
                 if (parameterTypes[i].equals(int.class)) {
                     parameters[i] = scanInt();
@@ -143,50 +124,14 @@ public class Translator {
                     parameters[i] = scan();
                 }
 
-//                System.out.println(parameters[i]);
             }
+            //casting object to sml instruction type & creating new instance with extracted parameters
             return (Instruction) constructor.newInstance(parameters);
 
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | InvocationTargetException e){
             e.printStackTrace();
         }
 
-
-//        switch (ins) {
-//            case "add":
-//                r = scanInt();
-//                s1 = scanInt();
-//                s2 = scanInt();
-//                return new AddInstruction(label, r, s1, s2);
-//            case "lin":
-//                r = scanInt();
-//                s1 = scanInt();
-//                return new LinInstruction(label, r, s1);
-//            case "sub":
-//                r = scanInt();
-//                s1 = scanInt();
-//                s2 = scanInt();
-//                return new SubInstruction(label, r, s1, s2);
-//            case "mul":
-//                r = scanInt();
-//                s1 = scanInt();
-//                s2 = scanInt();
-//                return new MulInstruction(label, r, s1, s2);
-//            case "div":
-//                r = scanInt();
-//                s1 = scanInt();
-//                s2 = scanInt();
-//                return new DivInstruction(label, r, s1, s2);
-//            case "bnz":
-//                s1 = scanInt();
-//                String newLabel = scan();
-//                return new BnzInstruction(label, s1, newLabel);
-//            case "out":
-//                s1 = scanInt();
-//                return new OutInstruction(label, s1);
-//        }
-//
-//        // You will have to write code here for the other instructions.
 
         return null;
     }
